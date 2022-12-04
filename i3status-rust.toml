@@ -1,0 +1,62 @@
+# NOTE: this example targets the master branch of i3status-rust.
+#
+# For latest stable version, refer to
+# https://github.com/greshake/i3status-rust/blob/v0.22.0/examples/config.toml
+
+[theme]
+theme = "solarized-dark"
+[icons]
+icons = "awesome"
+
+[[block]]
+block = "bluetooth"
+mac = "2C:41:A1:C6:CC:BC"
+format = "$icon $name{$percentage|}"
+disconnected_format = ""
+# format_unavailable = "QC35 x"
+
+[[block]]
+block = "net"
+device = "wlan0"
+# format = "{ssid} {signal_strength} {ip} {speed_down;K*b} {graph_down:8;M*_b#50}"
+interval = 5
+
+[[block]]
+block = "cpu"
+interval = 1
+format = "$icon $barchart $utilization $frequency.eng(4,Hz,!M)"
+# format = "{barchart} {utilization} {frequency}"
+
+[[block]]
+block = "memory"
+format = "$icon $mem_used.eng(5,B,!M)/$mem_total.eng(5,B,!M)"
+# format = "{mem_used;M}/{mem_total;M}({mem_total_used_percents})"
+# display_type = "memory"
+# icons = true
+interval = 10
+warning_mem = 80
+warning_swap = 80
+critical_mem = 95
+critical_swap = 95
+
+[[block]]
+block = "keyboard_layout"
+driver = "sway"
+format = " $layout "
+[block.mappings]
+"Finnish (N/A)" = "FI 🇫🇮"
+"English (US)" = "US 🇺🇸"
+
+
+[[block]]
+block = "battery"
+interval = 10
+format = "$icon $percentage $time"
+
+[[block]]
+block = "sound"
+
+[[block]]
+block= "time"
+format = "%A %e.%m.%Y %R"
+interval = 60
