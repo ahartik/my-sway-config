@@ -55,14 +55,19 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Basics:
 #
+
+workspace_layout tabbed
+
+
     # Start a terminal
     bindsym $mod+t exec $term
+# bindsym $mod+shift+t splith; layout tabbed; exec $term
 
     # Kill focused window
     bindsym $mod+c kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    bindsym $mod+r exec $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -189,7 +194,7 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
+bindsym $mod+d mode "resize"
 
 #
 # Status Bar:
