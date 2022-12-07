@@ -136,6 +136,7 @@ workspace_layout tabbed
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
+    bindsym $mod+Shift+a focus child
 #
 # Scratchpad:
 #
@@ -205,10 +206,12 @@ include /etc/sway/config.d/*
 
 input "type:keyboard" {
     xkb_layout us,fi
-  # xkb_variant ,nodeadkeys
-    xkb_options grp:win_space_toggle
-    xkb_options caps:escape
+    # xkb_variant ,nodeadkeys
+    # All options must be on the same line
+    # Compose-key looks at ~/.XCompose
+    xkb_options compose:ralt,caps:escape
 }
+
 bindsym $mod+space input type:keyboard xkb_switch_layout next
 
 # Media etc. keys
@@ -230,3 +233,6 @@ bindsym $mod+p exec grim $HOME/last_screenshot.png
 # Redshift 
 exec_always killall redshift
 exec_always redshift -l 61.5:24 -m wayland
+
+# XWayland
+for_window [shell="xwayland"] title_format "%title [XWayland]"
