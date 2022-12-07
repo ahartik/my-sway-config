@@ -229,6 +229,7 @@ exec_always sh $HOME/.config/sway/swayidle.sh
 
 # Screenshot
 bindsym $mod+p exec grim $HOME/last_screenshot.png
+bindsym $mod+Shift+p exec bash -c 'grim -g "$(slurp)" ~/last_screenshot.png'
 
 # Redshift 
 exec_always killall redshift
