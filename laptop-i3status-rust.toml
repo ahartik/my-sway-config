@@ -29,7 +29,7 @@ format = "$icon $barchart $utilization $frequency.eng(4,Hz,!M)"
 
 [[block]]
 block = "memory"
-format = "$icon $mem_used.eng(5,B,!M)/$mem_total.eng(5,B,!M)"
+format = "$icon $mem_used.eng(5,B, !M) / $mem_total.eng(5,B, !M)"
 # format = "{mem_used;M}/{mem_total;M}({mem_total_used_percents})"
 # display_type = "memory"
 # icons = true

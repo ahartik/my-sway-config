@@ -231,9 +231,8 @@ exec_always sh $HOME/.config/sway/swayidle.sh
 bindsym $mod+p exec grim $HOME/last_screenshot.png
 bindsym $mod+Shift+p exec bash -c 'grim -g "$(slurp)" ~/last_screenshot.png'
 
-# Redshift 
-exec_always killall redshift
-exec_always redshift -l 61.5:24 -m wayland
+# Redshift
+exec_always bash -c 'killall -w redshift; redshift -l 61.5:24 -m wayland'
 
 # XWayland
 for_window [shell="xwayland"] title_format "%title [XWayland]"
