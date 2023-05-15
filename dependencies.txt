@@ -4,11 +4,12 @@ swayidle
 swaylock
 dmenu
 i3status-rust (>= 0.30)
-redshift (with wayland support)
+redshift (with wayland support, redshift-wayland-git aur)
 grim
 ffmpeg
 pulseaudio
 foot
 awesome font
 sway-overfocus
+wl-copy (from wl-clipboard)
 

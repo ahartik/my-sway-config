@@ -210,6 +210,8 @@ input "type:keyboard" {
     # All options must be on the same line
     # Compose-key looks at ~/.XCompose
     xkb_options compose:ralt,caps:escape
+    repeat_rate 20
+    repeat_delay 200
 }
 
 bindsym $mod+space input type:keyboard xkb_switch_layout next
@@ -218,7 +220,8 @@ bindsym $mod+space input type:keyboard xkb_switch_layout next
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+# Laptop hack:
+bindsym XF86AudioMicMute exec "pactl set-source-mute @DEFAULT_SOURCE@ toggle && amixer -c0 sset Capture toggle"
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
 
@@ -229,7 +232,7 @@ exec_always sh $HOME/.config/sway/swayidle.sh
 
 # Screenshot
 bindsym $mod+p exec grim $HOME/last_screenshot.png
-bindsym $mod+Shift+p exec bash -c 'grim -g "$(slurp)" ~/last_screenshot.png'
+bindsym $mod+Shift+p exec bash -c 'grim -g "$(slurp)" ~/last_screenshot.png && wl-copy < ~/last_screenshot.png'
 
 # Redshift
 exec_always bash -c 'killall -w redshift; redshift -l 61.5:24 -m wayland'
