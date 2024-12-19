@@ -153,8 +153,11 @@ workspace_layout tabbed
 # Mark and move marks
 
 # Disabled, this can crash sway
-# bindsym $mod+y mark --toggle y
-# bindsym $mod+Shift+y mark _here; [con_mark=y] floating disable; [con_mark=y] move to mark _here; [con_mark=_here] unmark; [con_mark=y] focus; [con_mark=y] unmark
+bindsym $mod+y mark --toggle y
+# TODO: Disable floating when moving windows from the scratchpad
+# Currently $mod+Shift+Space can be used to toggle floating
+# [con_mark=y] floating disable;
+bindsym $mod+Shift+y mark _here; [con_mark=y] move to mark _here;  [con_mark=_here] unmark; [con_mark=y] focus; [con_mark=y] unmark
 
 #
 # Resizing containers:
@@ -237,7 +240,7 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
 
 # Locking
-bindsym Ctrl+Alt+l exec sh $HOME/.config/sway/lock.sh
+bindsym Ctrl+Alt+l exec sh $HOME/.config/sway/lock.sh --screenshot
 exec_always killall swayidle
 exec_always sh $HOME/.config/sway/swayidle.sh
 
@@ -247,6 +250,12 @@ bindsym $mod+Shift+p exec bash -c 'grim -g "$(slurp)" ~/last_screenshot.png && w
 
 # Redshift
 exec_always bash -c 'killall -w redshift; redshift -l 61.5:24 -m wayland'
+# Notifications using mako
+exec_always bash -c 'killall -w mako; mako --default-timeout=5000 &!'
+
+# Inhibit sleep if there are fullscreen windows
+# for_window [class=".*"] inhibit_idle fullscreen
+# for_window [app_id=".*"] inhibit_idle fullscreen
 
 # XWayland
 for_window [shell="xwayland"] title_format "%title [XWayland]"

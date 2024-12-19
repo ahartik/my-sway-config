@@ -4,9 +4,9 @@
 # https://github.com/greshake/i3status-rust/blob/v0.22.0/examples/config.toml
 
 [theme]
-theme = "solarized-dark"
+theme = "gruvbox-dark"
 [icons]
-icons = "awesome"
+icons = "emoji"
 
 [[block]]
 block = "bluetooth"
@@ -17,19 +17,20 @@ disconnected_format = ""
 
 [[block]]
 block = "net"
-device = "wlan0"
+# device = "wlan0"
 # format = "{ssid} {signal_strength} {ip} {speed_down;K*b} {graph_down:8;M*_b#50}"
+format = " $icon $device: $ssid ($signal_strength) ^icon_net_down $speed_down.eng(prefix:K) ^icon_net_up $speed_up.eng(prefix:K)"
 interval = 5
 
 [[block]]
 block = "cpu"
 interval = 1
-format = "$icon $barchart $utilization $frequency.eng(4,Hz,!M)"
-# format = "{barchart} {utilization} {frequency}"
+format = "$icon $barchart $utilization $frequency.eng(width:4, prefix:M, force_prefix:true)"
+#format = "$barchart {utilization} {frequency}"
 
 [[block]]
 block = "memory"
-format = "$icon $mem_used.eng(5,B, !M) / $mem_total.eng(5,B, !M)"
+format = "$icon $mem_used.eng(w:5,prefix:M, force_prefix:true) / $mem_total.eng(w:5,prefix:M, force_prefix:true)"
 # format = "{mem_used;M}/{mem_total;M}({mem_total_used_percents})"
 # display_type = "memory"
 # icons = true
@@ -61,5 +62,5 @@ block = "sound"
 
 [[block]]
 block= "time"
-format = "%A %e.%m.%Y %R"
+format = "$timestamp.datetime(f:'%A %e.%m.%Y %R')"
 interval = 1
