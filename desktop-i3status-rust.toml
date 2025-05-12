@@ -67,6 +67,8 @@ block = "sound"
 format = "$icon {$volume.eng(w:2) |} $output_name "
 [block.mappings]
 "alsa_output.usb-Vanatoo_Vanatoo_T0-00.analog-stereo" = "Speakers"
+"alsa_output.usb-Generic_USB_Audio-00.HiFi__Headphones__sink" = "🎧"
+"alsa_output.pci-0000_01_00.1.hdmi-stereo" = "📺"
 
 [[block]]
 block= "time"

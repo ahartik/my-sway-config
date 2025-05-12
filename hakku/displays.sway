@@ -1,0 +1,12 @@
+# DESKTOP ONLY
+#
+
+set $display_tv 'LG Electronics LG TV SSCR2 0x01010101'
+set $display_wide 'BNQ BenQ EX3501R K4L00234019'
+
+output $display_wide mode 3440x1440@99.982Hz position 0,0
+output $display_tv mode 3840x2160@60Hz position -3840,0
+
+output $display_tv disable
+# bindsym $mod+o output $display_tv toggle
+bindsym $mod+o exec $HOME/.config/sway/hakku/tv_toggle.sh

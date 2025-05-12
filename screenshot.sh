@@ -1,5 +1,5 @@
 #!/bin/bash
-
+/
 # Adapted from
 # https://gist.github.com/singulared/7c6d53c1b84fbb7cf22d07c5c7d3e945
 
