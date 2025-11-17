@@ -24,7 +24,7 @@ interval = 5
 [[block]]
 block = "cpu"
 interval = 1
-format = "$icon $barchart $utilization $frequency.eng(width:4, prefix:M, force_prefix:true)"
+format = "$icon $barchart $utilization $max_frequency.eng(width:4, prefix:M, force_prefix:true)"
 #format = "$barchart {utilization} {frequency}"
 
 [[block]]

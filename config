@@ -28,6 +28,8 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
 include "$HOME/.config/sway/$(hostname -s)/*.sway"
 
+# No border if ther's only one window.
+smart_borders on
 
 ### Key bindings
 #
@@ -249,7 +251,7 @@ bindsym $mod+p exec grim $HOME/last_screenshot.png
 bindsym $mod+Shift+p exec bash -c 'grim -g "$(slurp)" ~/last_screenshot.png && wl-copy < ~/last_screenshot.png'
 
 # Redshift
-exec_always bash -c 'killall -w redshift; redshift -l 61.5:24 -m wayland'
+exec_always bash -c 'killall -w wlsunset ; wlsunset -l 61.5 -L 24'
 # Notifications using mako
 exec_always bash -c 'killall -w mako; mako --default-timeout=5000 &!'
 

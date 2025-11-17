@@ -3,10 +3,22 @@
 
 set $display_tv 'LG Electronics LG TV SSCR2 0x01010101'
 set $display_wide 'BNQ BenQ EX3501R K4L00234019'
+set $display_side 'HP Inc. HP E243i 6CM7500LKT'
+
 
 output $display_wide mode 3440x1440@99.982Hz position 0,0
+# output $display_tv mode 3840x2160@120Hz position -3840,0
 output $display_tv mode 3840x2160@60Hz position -3840,0
+
+output $display_side mode 1920x1200@60Hz position 3440,0
+output $display_side transform 90
+
+# High values have latency, low values can skip frames.
+#
+# output * max_render_time 2
 
 output $display_tv disable
 # bindsym $mod+o output $display_tv toggle
 bindsym $mod+o exec $HOME/.config/sway/hakku/tv_toggle.sh
+
+exec_always bash -c 'xrandr --output DP-2 --primary'

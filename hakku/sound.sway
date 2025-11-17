@@ -1,1 +1,2 @@
 bindsym XF86AudioStop exec $HOME/.config/sway/hakku/pa-next-sink.sh
+bindsym $mod+bracketright exec $HOME/.config/sway/hakku/pa-next-sink.sh
