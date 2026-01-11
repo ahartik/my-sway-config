@@ -28,6 +28,48 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
 include "$HOME/.config/sway/$(hostname -s)/*.sway"
 
+include "$HOME/.config/sway/themes/catppuccin-macchiato"
+
+# target                 title     bg    text   indicator  border
+client.focused           $lavender $mauve $crust $rosewater $lavender
+client.focused_inactive  $overlay0 $surface2 $text  $rosewater $overlay0
+client.unfocused         $overlay0 $base $text  $rosewater $overlay0
+client.urgent            $peach    $base $peach $overlay0  $peach
+client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
+client.background        $base
+
+# Status Bar:
+#
+# Read `man 5 sway-bar` for more information about this section.
+bar {
+  # Using catppuccin colors
+  colors {
+    background         $base
+    statusline         $text
+    focused_statusline $text
+    focused_separator  $base
+
+    # target           border bg        text
+    focused_workspace  $base  $mauve    $crust
+    active_workspace   $base  $surface2 $text
+    inactive_workspace $base  $base     $text
+    urgent_workspace   $base  $red      $crust
+  }
+# font pango:DejaVu Sans Mono, FontAwesome 10
+    position bottom
+
+    # When the status_command prints a new line to stdout, swaybar updates.
+    # The default just shows the current date and time.
+    # status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
+    status_command i3status-rs $HOME/.config/sway/i3status-rust.toml
+# colors {
+#       statusline #ffffff
+#       separator #666666
+#       background #323232
+#       inactive_workspace #32323200 #32323200 #5c5c5c
+#   }
+}
+
 # No border if ther's only one window.
 smart_borders on
 
@@ -186,24 +228,6 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+d mode "resize"
-
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
-bar {
-    position bottom
-
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    # status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
-    status_command i3status-rs $HOME/.config/sway/i3status-rust.toml
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
-}
 
 # Replace movement with sway-overfocus
 bindsym $mod+h exec sway-overfocus split-lt float-lt output-ls

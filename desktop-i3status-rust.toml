@@ -4,7 +4,7 @@
 # https://github.com/greshake/i3status-rust/blob/v0.22.0/examples/config.toml
 
 [theme]
-theme = "gruvbox-dark"
+theme = "space-villain"
 [icons]
 icons = "emoji"
 
@@ -20,6 +20,9 @@ block = "net"
 device = "eth0"
 # format = "{ssid} {signal_strength} {ip} {speed_down;K*b} {graph_down:8;M*_b#50}"
 interval = 5
+[block.theme_overrides]
+idle_bg = "#123456"
+
 
 [[block]]
 block = "cpu"
@@ -55,6 +58,8 @@ format = " $layout "
 [block.mappings]
 "Finnish (N/A)" = "FI 🇫🇮"
 "English (US)" = "US 🇺🇸"
+[block.theme_overrides]
+idle_bg = "#123456"
 
 
 # [[block]]
@@ -69,6 +74,14 @@ format = "$icon {$volume.eng(w:2) |} $output_name "
 "alsa_output.usb-Vanatoo_Vanatoo_T0-00.analog-stereo" = "Speakers"
 "alsa_output.usb-Generic_USB_Audio-00.HiFi__Headphones__sink" = "🎧"
 "alsa_output.pci-0000_01_00.1.hdmi-stereo" = "📺"
+
+[[block]]
+block = "custom"
+command = ''' echo Mouse $(/home/aleksi/local/bin/razer_battery.py) '''
+interval = 5
+[block.theme_overrides]
+idle_bg = "#47E10C"
+idle_fg = "#000000"
 
 [[block]]
 block= "time"
