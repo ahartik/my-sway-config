@@ -2,7 +2,7 @@
 
 killall -w swayidle
 
-swayidle  \
+swayidle  -d \
   timeout 299 "~/.config/sway/screenshot.sh" \
   timeout 310 "~/.config/sway/lock.sh" \
   timeout 300 'swaymsg "output * dpms off"' \

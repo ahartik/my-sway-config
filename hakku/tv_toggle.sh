@@ -1,8 +1,10 @@
 #!/bin/bash
 
 display_tv='LG Electronics LG TV SSCR2 0x01010101'
-display_wide='BNQ BenQ EX3501R K4L00234019'
+display_main='Microstep MPG272UX OLED 0x01010101'
 display_side='HP Inc. HP E243i 6CM7500LKT'
+
+# display_wide='BNQ BenQ EX3501R K4L00234019'
 
 IS_ENABLED=$(swaymsg -t get_outputs | jq 'map (select(.model=="LG TV SSCR2").active)[0]')
 echo IS_ENABLED=$IS_ENABLED
@@ -13,15 +15,17 @@ SPEAKER_SINK="alsa_output.usb-Vanatoo_Vanatoo_T0-00.analog-stereo"
 if [[ "$IS_ENABLED" == 'true' ]]; then
 	echo "TV is on, disabling"
 	swaymsg "output '$display_tv' disable"
-  swaymsg "output '$display_wide' position 0 0"
-  swaymsg "output '$display_side' position 3440 0"
+  swaymsg "output '$display_main' enable"
+  swaymsg "output '$display_main' position 0 0"
+  swaymsg "output '$display_side' position 3840 0"
 	pactl set-default-sink "$SPEAKER_SINK"
 else
 	echo "TV is off, switching on"
 	swaymsg "output '$display_tv' enable"
   swaymsg "output '$display_tv' position 0 0"
-  swaymsg "output '$display_wide' position 3840 0"
-  swaymsg "output '$display_side' position 7280 0"
+  # swaymsg "output '$display_main' position 3840 0"
+  swaymsg "output '$display_main' disable"
+  # swaymsg "output '$display_side' position 7680 0"
 	$HOME/.config/sway/hakku/lgtv --name OLEDG4 on &
 	bash -c "sleep 1 && $HOME/.config/sway/hakku/lgtv --name OLEDG4 --ssl setInput HDMI_3 " &
 	# swaymsg "output '$display_tv' power on"
