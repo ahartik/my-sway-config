@@ -40,3 +40,11 @@ fi
 IDX=$NEXT_IDX
 
 done
+
+CURRENT_SINK=$(pactl get-default-sink)
+DESCRIPTION=$(pactl --format json list sinks | jq -r ".[] | select(.name == \"$CURRENT_SINK\") | .description")
+echo $CURRENT_SINK
+echo $DESCRIPTION
+
+# Show the new sink
+swayosd-client --custom-icon audio-card --custom-message "$DESCRIPTION"

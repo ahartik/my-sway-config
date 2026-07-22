@@ -66,7 +66,7 @@ bar {
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
     # status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
-    status_command i3status-rs $HOME/.config/sway/i3status-rust.toml
+    status_command i3status-rs "$HOME/.config/sway/$(hostname -s)/i3status-rust.toml"
 # colors {
 #       statusline #ffffff
 #       separator #666666
@@ -246,6 +246,8 @@ bindsym $mod+u exec sway-overfocus group-lw group-uw
 bindsym $mod+Control+Shift+l move workspace to output right
 bindsym $mod+Control+Shift+h move workspace to output left
 
+# We depend on SwayOSD for displaying OSD for volume etc.
+exec_always bash -c 'killall -w swayosd-server; swayosd-server --top-margin 0.5'
 
 # Keyboard stuff
 
@@ -259,12 +261,21 @@ input "type:keyboard" {
     repeat_delay 200
 }
 
-bindsym $mod+space input type:keyboard xkb_switch_layout next
+# Old version
+# bindsym $mod+space input type:keyboard xkb_switch_layout next
+# New with SwayOSD
+bindsym $mod+space exec $HOME/.config/sway/keyboard-next-layout.sh
+
 
 # Media etc. keys
-bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+# Regular version
+# bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+# bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+# bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+# SwayOSD version
+bindsym --locked XF86AudioRaiseVolume exec swayosd-client --output-volume raise
+bindsym --locked XF86AudioLowerVolume exec swayosd-client --output-volume lower
+bindsym --locked XF86AudioMute exec swayosd-client --output-volume mute-toggle
 # Laptop hack:
 bindsym XF86AudioMicMute exec "pactl set-source-mute @DEFAULT_SOURCE@ toggle && amixer -c0 sset Capture toggle"
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
